@@ -1,0 +1,14 @@
+version: '2'
+services:
+  user-service:
+    build: ./user-service
+    ports:
+     - "3000:3000"
+  grade-service:
+    build: ./grade-service
+    ports:
+     - "4000:4000"
+    depends_on:
+     - user-service
+    environment:
+     - USER_SERVICE_BASE_URL=http://user-service:3000
